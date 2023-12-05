@@ -14,4 +14,14 @@ public:
     void addSymbol(const std::string& name, int value) {
         symbolTable[name] = value;
     }
+    // Función para obtener el valor de un símbolo desde el entorno
+    int getSymbolValue(const std::string& name) const {
+        auto it = symbolTable.find(name);
+        if (it != symbolTable.end()) {
+            return it->second;
+        } else {
+            std::cerr << "Error: Symbol '" << name << "' not found in the environment." << std::endl;
+            return 0; // Puedes cambiar esto según tus necesidades
+        }
+    }
 
