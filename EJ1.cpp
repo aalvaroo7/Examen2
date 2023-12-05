@@ -21,4 +21,4 @@ private:
         //union que contiene los valores de los tipos de variant y no puede ser modificado(es un private)
     };
 public:
-}
+};
