@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-
+#include <map>
+#include <variant>
 class Variant {
 public:
     // Definir un tipo para representar valores flexibles
