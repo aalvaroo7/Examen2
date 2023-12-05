@@ -37,3 +37,9 @@ public:
         auto it = symbolTable.find(name);
         if (it != symbolTable.end()) {
             return it->second;
+        } else {
+            // Manejo de error o valor predeterminado
+            return Variant(); // Puedes ajustar esto según tus necesidades
+        }
+    }
+};
