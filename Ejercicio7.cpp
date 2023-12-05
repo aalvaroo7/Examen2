@@ -44,3 +44,38 @@ public:
 private:
     std::map<std::string, Variant::Value> symbolTable;
 };
+// Función para procesar el estado del jugador usando Environment
+void processPlayerState(const Environment& env) {
+    // Obtener valores relacionados con el estado del jugador
+    Variant::Value playerHealth = env.getSymbolValue("health");
+    Variant::Value playerScore = env.getSymbolValue("score");
+
+    // Mostrar información del estado del jugador
+    std::cout << "Player Health: ";
+    Variant(playerHealth).printValue();
+
+    std::cout << "Player Score: ";
+    Variant(playerScore).printValue();
+}
+
+int main() {
+    Environment gameEnvironment;
+
+    // Configurar variables relacionadas con el estado del jugador
+    gameEnvironment.addSymbol("health", 100);
+    gameEnvironment.addSymbol("score", 0);
+
+    // Mostrar el estado inicial del jugador
+    std::cout << "Estado inicial del jugador:" << std::endl;
+    processPlayerState(gameEnvironment);
+
+    // Simular cambios en el juego y actualizar el entorno
+    gameEnvironment.addSymbol("health", 75);
+    gameEnvironment.addSymbol("score", 50);
+
+    // Mostrar el estado actualizado del jugador
+    std::cout << "\nEstado actualizado del jugador:" << std::endl;
+    processPlayerState(gameEnvironment);
+
+    return 0;
+}
