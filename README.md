@@ -9,7 +9,7 @@ https://github.com/aalvaroo7/Examen2.git
 4) c) Este método se utiliza para analizar o interpretar una cadena JSON y construir un objeto Variant a partir de la información contenida en la cadena JSON. En otras palabras, toma una representación JSON en forma de cadena y la convierte en una estructura de datos que puede ser manipulada y utilizada como un objeto Variant. Este proceso se conoce comúnmente como "parsing" o "parsing JSON".
 
 ## Parte 2
-## Ejercicios 1 y 2 resueltos en EJ1.cpp , Ejercicios 3 y 4 en EJ3.cpp,
+## Ejercicios 1 y 2 resueltos en EJ1.cpp , Ejercicios 3 y 4 en EJ3.cpp, Ejercicio 5 resuelto en el readme(teoria) y en ejemploexplicacion5, Ejercicio 6 en EJ6 .cpp
 Ejercicio 1-creo la clase enviorment, la cual recibira valores de x e y incluso manejara una excepcion en caso de leer la variable z la cual no esta creada
 
 Ejercicio 2-creo un void el cual se encarga de almacenar los valores de x e y nuevos y los sobreescribira
