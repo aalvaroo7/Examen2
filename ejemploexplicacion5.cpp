@@ -1,89 +1,78 @@
 #include <iostream>
-#include <stdexcept>
-#include <string>
 #include <map>
+#include <string>
+#include <variant>
 
-// Definición de la clase Variant
 class Variant {
 public:
-    enum class Type {
-        INT,
-        DOUBLE,
-        STRING
-    };
-private:
-    Type valueType;
-    union {
-        int intValue;
-        double doubleValue;
-        std::string stringValue;
-    };
-public:
-    // Constructores para cada tipo de valor
-    Variant(int value) : valueType(Type::INT), intValue(value) {}
-    Variant(double value) : valueType(Type::DOUBLE), doubleValue(value) {}
-    Variant(const std::string& value) : valueType(Type::STRING), stringValue(value) {}
+    // Definir un tipo para representar valores flexibles
+    using Value = std::variant<int, double, std::string>;
 
-    // Métodos para obtener el valor y el tipo
-    int getInt() const { return intValue; }
-    double getDouble() const { return doubleValue; }
-    std::string getString() const { return stringValue; }
-    Type getType() const { return valueType; }
+    // Constructor que acepta un valor inicial
+    Variant(const Value& val) : value(val) {}
+
+    // Obtener el valor almacenado en Variant
+    Value getValue() const {
+        return value;
+    }
+
+    // Imprimir el valor almacenado
+    void printValue() const {
+        std::visit([](const auto& v) { std::cout << v; }, value);
+        std::cout << std::endl;
+    }
+
+private:
+    Value value;
 };
 
-// Definición de la clase Environment
 class Environment {
-private:
-    std::map<std::string, Variant> symbolTable;
 public:
-    // Función para asignar un valor a una variable en el entorno
-    void setVariable(const std::string& name, const Variant& value) {
-        symbolTable[name] = value;
+    // Método para agregar un símbolo y su valor a la tabla de símbolos
+    void addSymbol(const std::string& symbol, const Variant::Value& value) {
+        symbolTable[symbol] = value;
     }
 
-    // Función para obtener el valor de una variable del entorno
-    Variant getVariable(const std::string& name) const {
-        auto it = symbolTable.find(name);
+    // Método para obtener el valor asociado a un símbolo en la tabla de símbolos
+    Variant::Value getSymbolValue(const std::string& symbol) const {
+        auto it = symbolTable.find(symbol);
         if (it != symbolTable.end()) {
-            return it->second;
+            return it->second; // Devuelve el valor asociado al símbolo
         } else {
-            throw std::runtime_error("Error: Variable '" + name + "' not found in the environment.");
+            std::cerr << "Error: El símbolo '" << symbol << "' no está definido." << std::endl;
+            return Variant::Value{}; // Devuelve un valor predeterminado
         }
     }
+
+private:
+    std::map<std::string, Variant::Value> symbolTable;
 };
 
 int main() {
-    // Ejemplo de uso
+    Environment myEnvironment;
 
-    // Crear una instancia de Environment
-    Environment env;
+    // Agregar símbolos con valores de diferentes tipos
+    myEnvironment.addSymbol("x", 10);
+    myEnvironment.addSymbol("y", 3.14);
+    myEnvironment.addSymbol("name", "John");
 
-    // Asignar valores a variables en el entorno utilizando Variant
-    env.setVariable("x", Variant(42));          // Entero
-    env.setVariable("y", Variant(3.14));        // Double
-    env.setVariable("message", Variant("Hola")); // Cadena
+    // Obtener y mostrar los valores de los símbolos
+    Variant::Value valueX = myEnvironment.getSymbolValue("x");
+    Variant::Value valueY = myEnvironment.getSymbolValue("y");
+    Variant::Value valueName = myEnvironment.getSymbolValue("name");
 
-    // Obtener valores de variables desde el entorno y mostrarlos
-    try {
-        Variant resultX = env.getVariable("x");
-        std::cout << "Value of x: " << resultX.getInt() << std::endl;
+    Variant variantX(valueX);
+    Variant variantY(valueY);
+    Variant variantName(valueName);
 
-        Variant resultY = env.getVariable("y");
-        std::cout << "Value of y: " << resultY.getDouble() << std::endl;
+    std::cout << "Valor de x: ";
+    variantX.printValue();
 
-        Variant resultMessage = env.getVariable("message");
-        std::cout << "Value of message: " << resultMessage.getString() << std::endl;
+    std::cout << "Valor de y: ";
+    variantY.printValue();
 
-        // Intentar obtener una variable que no está en el entorno
-        try {
-            Variant resultZ = env.getVariable("z");
-            // Esto lanzará una excepción
-        } catch (const std::runtime_error& e) {
-            std::cerr << e.what() << std::endl;
-        }
-    } catch (const std::runtime_error& e) {
-        std::cerr << e.what() << std::endl;
-    }
+    std::cout << "Valor de name: ";
+    variantName.printValue();
 
     return 0;
 }
