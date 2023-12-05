@@ -47,3 +47,16 @@ public:
 private:
     std::map<std::string, int> symbolTable;
 };
+int main() {
+    // Ejemplo de uso
+    Environment env;
+
+    // Agregar símbolos al entorno
+    env.addSymbol("x", 10);
+    env.addSymbol("y", 20);
+
+    // Buscar valores de símbolos en el entorno
+    int valueX;
+    if (env.lookup("x", valueX)) {
+        std::cout << "Value of x: " << valueX << std::endl;
+    }
