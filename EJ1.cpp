@@ -10,7 +10,6 @@ public:
         INT,
         DOUBLE,
         STRING,
-        // Agrega más tipos según sea necesario
         //definicion de la clase variant que puede ser int, double o string
     };
 private:
@@ -19,5 +18,7 @@ private:
         int intValue;
         double doubleValue;
         std::string stringValue;
-        // Agrega más miembros de la unión según sea necesario
+        //union que contiene los valores de los tipos de variant y no puede ser modificado(es un private)
     };
+public:
+}
