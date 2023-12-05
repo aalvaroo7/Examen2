@@ -28,3 +28,7 @@ private:
 public:
     // Constructor
     Environment() {}
+    // Función para asignar un valor a una variable en el entorno
+    void setVariable(const std::string& name, const Variant& value) {
+        symbolTable[name] = value;
+    }
