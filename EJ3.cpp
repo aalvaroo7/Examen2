@@ -60,3 +60,16 @@ int main() {
     if (env.lookup("x", valueX)) {
         std::cout << "Value of x: " << valueX << std::endl;
     }
+    int valueY;
+    if (env.lookup("y", valueY)) {
+        std::cout << "Value of y: " << valueY << std::endl;
+    }
+
+    // Intentar buscar un símbolo que no está en el entorno
+    int valueZ;
+    if (env.lookup("z", valueZ)) {
+        std::cout << "Value of z: " << valueZ << std::endl;
+    }
+
+    return 0;
+}
