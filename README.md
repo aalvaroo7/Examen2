@@ -2,3 +2,7 @@
 
 https://github.com/aalvaroo7/Examen2.git
 
+## Parte 1
+
+
+
