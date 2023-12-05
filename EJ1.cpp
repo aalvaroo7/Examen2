@@ -50,3 +50,8 @@ int main() {
 //este codigo detecta que no existe el simbolo y lo imprime en pantalla
     return 0;
 }
+// Insertar un nuevo símbolo
+env.insertSymbol("z", 30);
+
+// Intentar insertar un símbolo existente
+env.insertSymbol("x", 40);
