@@ -22,4 +22,18 @@ Ejercicio 5-La clase Environment y la clase Variant pueden trabajar juntas para 
 
 Ejercicio 6-he agregado las funciones removeSymbol y symbolExists para eliminar un símbolo del entorno y verificar si un símbolo existe, respectivamente.
 
+Ejercicio 7-Imagina que estás desarrollando un juego y deseas utilizar la clase Environment en conjunto con Variant para personalizar el comportamiento del juego. Aquí tienes un ejemplo simple donde se utiliza Environment para almacenar variables relacionadas con el estado del jugador y configuraciones del juego.
+
+Ejercicio7.cpp-En este ejemplo:
+
+La clase Environment se utiliza para almacenar variables relacionadas con el estado del jugador, como "health" y "score".
+La función processPlayerState utiliza el entorno para obtener y mostrar el estado actual del jugador.
+Se simulan cambios en el juego actualizando las variables del entorno, lo que refleja el cambio en el estado del jugador.
+Este es un enfoque básico, pero en un juego más complejo, podrías utilizar Environment y Variant para gestionar configuraciones del juego, características desbloqueadas, progreso del jugador y más. La flexibilidad de Variant permite almacenar diferentes tipos de datos, mientras que Environment proporciona un contexto para organizar y acceder a estos datos de manera estructurada.
+
+
+
+
+
+
 
