@@ -47,3 +47,34 @@ public:
     bool symbolExists(const std::string& name) const {
         return symbolTable.find(name) != symbolTable.end();
     }
+private:
+    std::map<std::string, int> symbolTable;
+};
+
+int main() {
+    // Ejemplo de uso
+    Environment env;
+
+    // Agregar símbolos al entorno
+    env.addSymbol("x", 10);
+    env.addSymbol("y", 20);
+
+    // Verificar si un símbolo existe
+    if (env.symbolExists("x")) {
+        std::cout << "Symbol 'x' exists in the environment." << std::endl;
+    } else {
+        std::cout << "Symbol 'x' does not exist in the environment." << std::endl;
+    }
+
+    // Eliminar un símbolo
+    env.removeSymbol("y");
+
+    // Verificar si un símbolo existe después de la eliminación
+    if (env.symbolExists("y")) {
+        std::cout << "Symbol 'y' exists in the environment." << std::endl;
+    } else {
+        std::cout << "Symbol 'y' does not exist in the environment." << std::endl;
+    }
+
+    return 0;
+}
