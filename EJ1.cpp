@@ -26,17 +26,10 @@ public:
         }
     }
 
-    // Método para insertar un símbolo en el entorno (sin sobrescribir si ya existe)
+    // Método para insertar un símbolo en el entorno (sobrescribiendo si ya existe)
     void insertSymbol(const std::string& name, int value) {
-        // Verificar si el símbolo ya existe en el entorno
-        auto it = symbolTable.find(name);
-        if (it == symbolTable.end()) {
-            // Si no existe, insertarlo
-            symbolTable.insert(std::make_pair(name, value));
-        } else {
-            // Si ya existe, mostrar un mensaje de advertencia
-            std::cerr << "Warning: Symbol '" << name << "' already exists in the environment. Skipping insertion." << std::endl;
-        }
+        // Insertar o actualizar el valor del símbolo
+        symbolTable[name] = value;
     }
 
 private:
@@ -61,16 +54,19 @@ int main() {
     // Intentar obtener un símbolo que no está en el entorno
     int valueZ = env.getSymbolValue("z");
 
-    // Insertar un nuevo símbolo
+    // Insertar o actualizar un nuevo símbolo (sobrescribirá si ya existe)
     env.insertSymbol("z", 30);
 
-    // Intentar insertar un símbolo existente
+    // Insertar o actualizar un símbolo existente (sobrescribirá el valor)
     env.insertSymbol("x", 40);
+    env.insertSymbol("y", 50);
 
-    // Obtener el valor del nuevo símbolo
-    int valueZNew = env.getSymbolValue("z");
+    // Obtener los nuevos valores de x e y después de la sobrescritura
+    int newValueX = env.getSymbolValue("x");
+    int newValueY = env.getSymbolValue("y");
 
-    std::cout << "Value of z: " << valueZNew << std::endl;
+    std::cout << "New value of x: " << newValueX << std::endl;
+    std::cout << "New value of y: " << newValueY << std::endl;
 
     return 0;
 }
