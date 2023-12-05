@@ -29,3 +29,7 @@ public:
     std::string getString() const { return stringValue; }
     Type getType() const { return valueType; }
 };
+// Definición de la clase Environment
+class Environment {
+private:
+    std::map<std::string, Variant> symbolTable;
