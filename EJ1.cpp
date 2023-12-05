@@ -1,45 +1,54 @@
-
-#include <iostream>
 #include <map>
 #include <string>
-#include <vector>
+#include <iostream>
+
 using namespace std;
-class Variant {
-public:
-    enum class Type {
-        INT,
-        DOUBLE,
-        STRING,
-        //definicion de la clase variant que puede ser int, double o string
-    };
-private:
-    Type valueType;
-    union {
-        int intValue;
-        double doubleValue;
-        std::string stringValue;
-        //union que contiene los valores de los tipos de variant y no puede ser modificado(es un private)
-    };
-public:
-};
+
 class Environment {
-private:
-    std::map<std::string, Variant> symbolTable;
 public:
     // Constructor
     Environment() {}
-    // Función para asignar un valor a una variable en el entorno
-    void setVariable(const std::string& name, const Variant& value) {
+
+    // Destructor
+    ~Environment() {}
+
+    // Función para agregar un símbolo y su valor al entorno
+    void addSymbol(const string& name, int value) {
         symbolTable[name] = value;
     }
-    // Función para obtener el valor de una variable del entorno
-    Variant getVariable(const std::string& name) const {
-        auto it = symbolTable.find(name);
-        if (it != symbolTable.end()) {
-            return it->second;
+
+    // Función para obtener el valor de un símbolo desde el entorno
+    int getSymbolValue(const string& name) {
+        // Si el símbolo no está presente, devuelve un valor predeterminado (puedes ajustarlo según tu necesidad)
+        if (symbolTable.find(name) != symbolTable.end()) {
+            return symbolTable[name];
         } else {
-            // Manejo de error o valor predeterminado
-            return Variant(); // Puedes ajustar esto según tus necesidades
+            cerr << "Error: Symbol '" << name << "' not found in the environment." << endl;
+            return 0; // Puedes cambiar esto según tus necesidades
         }
     }
+
+private:
+    map<string, int> symbolTable;
 };
+
+int main() {
+    // Ejemplo de uso
+    Environment env;
+
+    // Agregar símbolos al entorno
+    env.addSymbol("x", 10);
+    env.addSymbol("y", 20);
+
+    // Obtener valores de símbolos desde el entorno
+    int valueX = env.getSymbolValue("x");
+    int valueY = env.getSymbolValue("y");
+
+    cout << "Value of x: " << valueX << endl;
+    cout << "Value of y: " << valueY << endl;
+
+    // Intentar obtener un símbolo que no está en el entorno
+    int valueZ = env.getSymbolValue("z");
+
+        return 0;
+}
