@@ -49,3 +49,13 @@ public:
         }
     }
 };
+int main() {
+    // Ejemplo de uso
+
+    // Crear una instancia de Environment
+    Environment env;
+
+    // Asignar valores a variables en el entorno utilizando Variant
+    env.setVariable("x", Variant(42));          // Entero
+    env.setVariable("y", Variant(3.14));        // Double
+    env.setVariable("message", Variant("Hola")); // Cadena
