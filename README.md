@@ -6,7 +6,9 @@ https://github.com/aalvaroo7/Examen2.git
 1) b) rep.resentar cualquier tipo de dato lisp,puesto que la funcion variant se encarga de leer archivos y al usarla aplicada a lisp se usaría para leer archivos de esta librería
 2) a) debido a que to_string() se utiliza para convertir un objeto a una representación en cadena de caracteres.
 3) b) Este método se utiliza para serializar un objeto Variant en una cadena JSON, lo que significa que convierte la estructura de datos representada por el objeto Variant en una cadena de texto en formato JSON.
-4) c) Este método se utiliza para analizar o interpretar una cadena JSON y construir un objeto Variant a partir de la información contenida en la cadena JSON. En otras palabras, toma una representación JSON en forma de cadena y la convierte en una estructura de datos que puede ser manipulada y utilizada como un objeto Variant. Este proceso se conoce comúnmente como "parsing" o "parsing JSON".
+4) a) en términos generales, un método con ese nombre probablemente cumpliría la función de convertir una cadena JSON en un objeto Variant. Este tipo de método sería útil si se está trabajando con datos en formato JSON y se desea convertirlos en una representación interna que pueda ser manejada por la clase Variant.
+
+La conversión de una cadena JSON a un objeto Variant generalmente implicaría analizar la cadena JSON y asignar los valores correspondientes al objeto Variant según su tipo (int, double, string, etc.). Este proceso es común al trabajar con datos JSON en aplicaciones que utilizan estructuras flexibles como la clase Variant para manejar diferentes tipos de valores.
 
 ## Parte 2
 ## Ejercicios 1 y 2 resueltos en EJ1.cpp , Ejercicios 3 y 4 en EJ3.cpp, Ejercicio 5 resuelto en el readme(teoria) y en ejemploexplicacion5, Ejercicio 6 en EJ6 .cpp y Ejercicio 7 resuelto en readme(teoria) y en Ejercicio7.cpp
