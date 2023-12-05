@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <string>
 #include <map>
+
 // Definición de la clase Variant
 class Variant {
 public:
@@ -29,6 +30,7 @@ public:
     std::string getString() const { return stringValue; }
     Type getType() const { return valueType; }
 };
+
 // Definición de la clase Environment
 class Environment {
 private:
@@ -49,6 +51,7 @@ public:
         }
     }
 };
+
 int main() {
     // Ejemplo de uso
 
@@ -59,6 +62,7 @@ int main() {
     env.setVariable("x", Variant(42));          // Entero
     env.setVariable("y", Variant(3.14));        // Double
     env.setVariable("message", Variant("Hola")); // Cadena
+
     // Obtener valores de variables desde el entorno y mostrarlos
     try {
         Variant resultX = env.getVariable("x");
@@ -71,7 +75,12 @@ int main() {
         std::cout << "Value of message: " << resultMessage.getString() << std::endl;
 
         // Intentar obtener una variable que no está en el entorno
-        Variant resultZ = env.getVariable("z"); // Esto lanzará una excepción
+        try {
+            Variant resultZ = env.getVariable("z");
+            // Esto lanzará una excepción
+        } catch (const std::runtime_error& e) {
+            std::cerr << e.what() << std::endl;
+        }
     } catch (const std::runtime_error& e) {
         std::cerr << e.what() << std::endl;
     }
