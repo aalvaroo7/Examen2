@@ -59,3 +59,22 @@ int main() {
     env.setVariable("x", Variant(42));          // Entero
     env.setVariable("y", Variant(3.14));        // Double
     env.setVariable("message", Variant("Hola")); // Cadena
+    // Obtener valores de variables desde el entorno y mostrarlos
+    try {
+        Variant resultX = env.getVariable("x");
+        std::cout << "Value of x: " << resultX.getInt() << std::endl;
+
+        Variant resultY = env.getVariable("y");
+        std::cout << "Value of y: " << resultY.getDouble() << std::endl;
+
+        Variant resultMessage = env.getVariable("message");
+        std::cout << "Value of message: " << resultMessage.getString() << std::endl;
+
+        // Intentar obtener una variable que no está en el entorno
+        Variant resultZ = env.getVariable("z"); // Esto lanzará una excepción
+    } catch (const std::runtime_error& e) {
+        std::cerr << e.what() << std::endl;
+    }
+
+    return 0;
+}
