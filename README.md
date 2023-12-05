@@ -20,4 +20,6 @@ Ejercicio 4-se maneja una nueva excepcion aparte de la ya manejada en el ejercic
 
 Ejercicio 5-La clase Environment y la clase Variant pueden trabajar juntas para proporcionar un entorno de ejecución para scripts que maneje diferentes tipos de datos de manera dinámica a través de Variant. La clase Variant proporciona una forma de representar y manipular valores de diferentes tipos (enteros, doubles, cadenas, etc.) de manera genérica. La clase Environment, por otro lado, permite la creación de un contexto de ejecución que puede almacenar variables asociadas a valores Variant.nado
 
+Ejercicio 6-he agregado las funciones removeSymbol y symbolExists para eliminar un símbolo del entorno y verificar si un símbolo existe, respectivamente.
+
 
