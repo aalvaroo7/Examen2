@@ -49,12 +49,17 @@ int main() {
     int valueZ = env.getSymbolValue("z");
 //este codigo detecta que no existe el simbolo y lo imprime en pantalla
     return 0;
-}
+
 // Insertar un nuevo símbolo
-env.insertSymbol("z", 30);
+    env.insertSymbol("z", 30);
 
 // Intentar insertar un símbolo existente
-env.insertSymbol("x", 40);
+    env.insertSymbol("x", 40);
 
 // Obtener el valor del nuevo símbolo
-int valueZNew = env.getSymbolValue("z");
+    int valueZNew = env.getSymbolValue("z");
+
+    std::cout << "Value of z: " << valueZNew << std::endl;
+
+    return 0;
+}
