@@ -33,3 +33,19 @@ public:
 class Environment {
 private:
     std::map<std::string, Variant> symbolTable;
+public:
+    // Función para asignar un valor a una variable en el entorno
+    void setVariable(const std::string& name, const Variant& value) {
+        symbolTable[name] = value;
+    }
+
+    // Función para obtener el valor de una variable del entorno
+    Variant getVariable(const std::string& name) const {
+        auto it = symbolTable.find(name);
+        if (it != symbolTable.end()) {
+            return it->second;
+        } else {
+            throw std::runtime_error("Error: Variable '" + name + "' not found in the environment.");
+        }
+    }
+};
