@@ -47,6 +47,6 @@ int main() {
 
     // Intentar obtener un símbolo que no está en el entorno
     int valueZ = env.getSymbolValue("z");
-
+//este codigo detecta que no existe el simbolo y lo imprime en pantalla
     return 0;
 }
