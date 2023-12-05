@@ -22,3 +22,9 @@ private:
     };
 public:
 };
+class Environment {
+private:
+    std::map<std::string, Variant> symbolTable;
+public:
+    // Constructor
+    Environment() {}
