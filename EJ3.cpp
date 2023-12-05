@@ -25,3 +25,25 @@ public:
         }
     }
 
+    // Método para insertar un símbolo en el entorno (sobrescribiendo si ya existe)
+    void insertSymbol(const std::string& name, int value) {
+        // Insertar o actualizar el valor del símbolo
+        symbolTable[name] = value;
+    }
+
+    // Método para buscar un símbolo en el entorno
+    bool lookup(const std::string& name, int& value) const {
+        auto it = symbolTable.find(name);
+        if (it != symbolTable.end()) {
+            value = it->second;
+            return true; // Símbolo encontrado
+        } else {
+            // Símbolo no encontrado
+            std::cerr << "Warning: Symbol '" << name << "' not found in the environment." << std::endl;
+            return false;
+        }
+    }
+
+private:
+    std::map<std::string, int> symbolTable;
+};
