@@ -26,6 +26,19 @@ public:
         }
     }
 
+    // Método para insertar un símbolo en el entorno (sin sobrescribir si ya existe)
+    void insertSymbol(const std::string& name, int value) {
+        // Verificar si el símbolo ya existe en el entorno
+        auto it = symbolTable.find(name);
+        if (it == symbolTable.end()) {
+            // Si no existe, insertarlo
+            symbolTable.insert(std::make_pair(name, value));
+        } else {
+            // Si ya existe, mostrar un mensaje de advertencia
+            std::cerr << "Warning: Symbol '" << name << "' already exists in the environment. Skipping insertion." << std::endl;
+        }
+    }
+
 private:
     std::map<std::string, int> symbolTable;
 };
@@ -47,16 +60,14 @@ int main() {
 
     // Intentar obtener un símbolo que no está en el entorno
     int valueZ = env.getSymbolValue("z");
-//este codigo detecta que no existe el simbolo y lo imprime en pantalla
-    return 0;
 
-// Insertar un nuevo símbolo
+    // Insertar un nuevo símbolo
     env.insertSymbol("z", 30);
 
-// Intentar insertar un símbolo existente
+    // Intentar insertar un símbolo existente
     env.insertSymbol("x", 40);
 
-// Obtener el valor del nuevo símbolo
+    // Obtener el valor del nuevo símbolo
     int valueZNew = env.getSymbolValue("z");
 
     std::cout << "Value of z: " << valueZNew << std::endl;
