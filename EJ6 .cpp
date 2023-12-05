@@ -32,41 +32,18 @@ public:
         symbolTable[name] = value;
     }
 
-private:
-    std::map<std::string, int> symbolTable;
-};
+    // Método para eliminar un símbolo del entorno
+    void removeSymbol(const std::string& name) {
+        auto it = symbolTable.find(name);
+        if (it != symbolTable.end()) {
+            symbolTable.erase(it);
+            std::cout << "Symbol '" << name << "' removed from the environment." << std::endl;
+        } else {
+            std::cerr << "Error: Symbol '" << name << "' not found in the environment. Unable to remove." << std::endl;
+        }
+    }
 
-int main() {
-    // Ejemplo de uso
-    Environment env;
-
-    // Agregar símbolos al entorno
-    env.addSymbol("x", 10);
-    env.addSymbol("y", 20);
-
-    // Obtener valores de símbolos desde el entorno
-    int valueX = env.getSymbolValue("x");
-    int valueY = env.getSymbolValue("y");
-
-    std::cout << "Value of x: " << valueX << std::endl;
-    std::cout << "Value of y: " << valueY << std::endl;
-
-    // Intentar obtener un símbolo que no está en el entorno
-    int valueZ = env.getSymbolValue("z");
-
-    // Insertar o actualizar un nuevo símbolo (sobrescribirá si ya existe)
-    env.insertSymbol("z", 30);
-
-    // Insertar o actualizar un símbolo existente (sobrescribirá el valor)
-    env.insertSymbol("x", 40);
-    env.insertSymbol("y", 50);
-
-    // Obtener los nuevos valores de x e y después de la sobrescritura
-    int newValueX = env.getSymbolValue("x");
-    int newValueY = env.getSymbolValue("y");
-
-    std::cout << "New value of x: " << newValueX << std::endl;
-    std::cout << "New value of y: " << newValueY << std::endl;
-
-    return 0;
-}
+    // Método para verificar si un símbolo existe en el entorno
+    bool symbolExists(const std::string& name) const {
+        return symbolTable.find(name) != symbolTable.end();
+    }
